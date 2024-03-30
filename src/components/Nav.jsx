@@ -7,7 +7,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 const Nav = () => {
   return (
     <>
-     <div className='bg-gray-200 relative mx-auto  w-full max-w-7xl '>
+     <div className='bg-gray-200 relative  '>
        <div className='   h-auto  w-full'>
        <img src={imageBg} alt=""  className='w-full h-full object-contain absolute blur-[1.5px] - '/>
        </div>

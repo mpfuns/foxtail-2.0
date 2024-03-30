@@ -1,8 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { Nav, NotFound } from '../components';
+
 
 const Search = () => {
   return (
-    <div>Search</div>
+    <div className='mx-auto  w-full max-w-7xl'>
+    <Nav />
+    <NotFound />
+
+    </div>
   )
 }
 

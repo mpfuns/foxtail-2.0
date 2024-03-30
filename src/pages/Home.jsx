@@ -4,10 +4,10 @@ import { IoSearch } from 'react-icons/io5'
 import { foxBar } from '../assets'
 const Home = () => {
   return (
-    <>
+    <div className='mx-auto  w-full max-w-7xl'>
     <Nav />
     {/* Hook */}
-     <div className='mx-auto  w-full max-w-7xl my-8 flex justify-around items-center'>
+     <div className=' my-8 flex justify-around items-center'>
 
       <img src={foxBar} alt="" />
       <div className=' flex  flex-col '>
@@ -41,7 +41,7 @@ const Home = () => {
 
 
       </div>
-    </>
+    </div>
   )
 }
 
