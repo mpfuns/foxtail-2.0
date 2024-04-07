@@ -4,7 +4,7 @@ import { FaMartiniGlassCitrus } from "react-icons/fa6";
 const CocktailSkeleton = () => {
   return (
     <div className='flex flex-col items-center' >
-    <div className='w-[200px] h-[192px] bg-gray-400 flex justify-center items-center mb-4'>
+    <div className='w-[208px] h-[192px] bg-gray-400 flex justify-center items-center mb-4'>
         <FaMartiniGlassCitrus  className='text-7xl'/>
     </div>
 
