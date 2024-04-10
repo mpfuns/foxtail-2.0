@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {CockktailThumbnails, CocktailSkeleton, Nav} from "../components"
 import { IoSearch } from 'react-icons/io5'
-import { foxBar } from '../assets';
+import { foxBar, foxtailImg } from '../assets';
 import axios from 'axios';
 import { useEffect } from 'react';
 
@@ -9,7 +9,7 @@ import foxtailData from '../assets/foxtailData';
 const Home = () => {
 
   const [loading, setLoading] = useState();
-  const [fakeLoading, setFakeLoading] = useState();
+  const [fakeLoading, setFakeLoading] = useState(true);
   const [moment, setMoment] = useState({});
 
   async function fetchMomentCocktail(){
@@ -21,16 +21,7 @@ const Home = () => {
   
   }
 
-  function foxtailComp (){
 
-    setInterval(()=>{
-
-      setFakeLoading(true)
-    }, 2000)
-
-    setFakeLoading(false)
-
-  }
 
 
 
@@ -38,8 +29,13 @@ const Home = () => {
 
 
   useEffect(() => {
-   ;
+   
     fetchMomentCocktail();
+   
+   setTimeout(() => {
+    setFakeLoading(false)
+   }, 1000);
+
     
     }
   , [])
@@ -82,8 +78,7 @@ strAlcoholic} />)}
         <div className='flex flex-col items-center'>
         <h2 className='text-3xl text-center  font-bold mb-2 '>Cocktail Special</h2>
 
-        {fakeLoading? ( <CocktailSkeleton />) : (<CockktailThumbnails key={foxtailData.id} id={foxtailData.id} name={foxtailData.name} img={moment.strDrinkThumb} status={moment.
-strAlcoholic} />)}
+        {fakeLoading? ( <CocktailSkeleton />) : (<CockktailThumbnails key={foxtailData[0].id} id={foxtailData[0].id} name={foxtailData[0].name} img={foxtailImg} status={foxtailData[0].status} />)}
        
         </div>
 
