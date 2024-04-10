@@ -5,19 +5,11 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import  {useLocation, useNavigate } from "react-router-dom"
 
 
-const Nav = () => {
+const Nav = ({searchbar, searchbarHandler}) => {
 
 
 let location = useLocation ();
   let navigate = useNavigate();
-
-  useEffect(() => {
-   
-
-console.log(location.pathname)
-    
-    }
-  , [])
 
 
   return (
@@ -38,7 +30,7 @@ console.log(location.pathname)
 
           {location.pathname === "/search"? ( 
           <div className='flex items-center justify-center bg-white rounded-full max-w-60 m-auto border-solid  border-2 border-black py-2'>
-            <input type="text" placeholder='Search cocktail' className=' text-base border-none outline-none' />
+            <input type="text" placeholder='Search cocktail' className=' text-base border-none outline-none' value={searchbar}  onChange={searchbarHandler}/>
             <button>
             <IoSearch className=' text-xl' />
             </button>

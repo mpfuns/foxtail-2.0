@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {CockktailThumbnails, CocktailSkeleton, Nav} from "../components"
 import { IoSearch } from 'react-icons/io5'
 import { foxBar, foxtailImg } from '../assets';
 import axios from 'axios';
-import { useEffect } from 'react';
+
+import  { useNavigate } from "react-router-dom"
 
 import foxtailData from '../assets/foxtailData';
-const Home = () => {
+const Home = ({searchbar, searchbarHandler}) => {
+
+  let navigate = useNavigate();
 
   const [loading, setLoading] = useState();
   const [fakeLoading, setFakeLoading] = useState(true);
@@ -36,6 +39,7 @@ const Home = () => {
     setFakeLoading(false)
    }, 1000);
 
+
     
     }
   , [])
@@ -58,8 +62,8 @@ const Home = () => {
         <br></br>
         {/* seach bar   */}
         <div className='flex items-center justify-center bg-white rounded-full px-2 border-solid  border-2 border-black py-4'>
-            <input type="text" placeholder='Search cocktail' className=' text-3xl border-none outline-none' />
-            <button>
+            <input type="text" placeholder='Search cocktail' className=' text-3xl border-none outline-none'  value={searchbar} onChange={searchbarHandler} />
+            <button onClick={ () => navigate("/search")}>
             <IoSearch className=' text-6xl' />
             </button>
           </div>
