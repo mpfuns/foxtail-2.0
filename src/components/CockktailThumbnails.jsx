@@ -3,7 +3,7 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom'
 
 const CockktailThumbnails = ({id, name, img, status}) => {
-const navigate = useNavigate()
+let navigate = useNavigate()
 
   return (
     <div className='flex flex-col items-center cursor-pointer'onClick={ () => navigate(`/${id}`)} >
