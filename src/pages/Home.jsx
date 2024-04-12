@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import {CockktailThumbnails, CocktailSkeleton, Nav} from "../components"
 import { IoSearch } from 'react-icons/io5'
 import { foxBar, foxtailImg } from '../assets';
-import axios from 'axios';
+import axios from 'axios';    
 
 import  { useNavigate } from "react-router-dom"
 
 import foxtailData from '../assets/foxtailData';
-const Home = ({searchbar, searchbarHandler}) => {
+const Home = ({searchbar, searchbarHandler, setLastPage }) => {
 
   let navigate = useNavigate();
 
@@ -75,14 +75,14 @@ const Home = ({searchbar, searchbarHandler}) => {
         <div className='flex flex-col items-center'>
           <h2 className='text-3xl text-center  font-bold mb-2 '>Cocktail of the Moment </h2>
           {loading? (<CocktailSkeleton />): (<CockktailThumbnails key={moment.idDrink} id={moment.idDrink} name={moment.strDrink} img={moment.strDrinkThumb} status={moment.
-strAlcoholic} />)}
+strAlcoholic} setLastPage={setLastPage} />)}
           
 
         </div>
         <div className='flex flex-col items-center'>
         <h2 className='text-3xl text-center  font-bold mb-2 '>Cocktail Special</h2>
 
-        {fakeLoading? ( <CocktailSkeleton />) : (<CockktailThumbnails key={foxtailData[0].id} id={foxtailData[0].id} name={foxtailData[0].name} img={foxtailImg} status={foxtailData[0].status} />)}
+        {fakeLoading? ( <CocktailSkeleton />) : (<CockktailThumbnails key={foxtailData[0].id} id={foxtailData[0].id} name={foxtailData[0].name} img={foxtailImg} status={foxtailData[0].status} setLastPage={ setLastPage} />)}
        
         </div>
 

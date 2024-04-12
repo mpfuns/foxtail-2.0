@@ -28,15 +28,14 @@ let location = useLocation ();
           </div>
           {/* Searchbar and state  if on  seach page  */}
 
-          {location.pathname === "/search"? ( 
+          {location.pathname === "/search" && ( 
           <div className='flex items-center justify-center bg-white rounded-full max-w-60 m-auto border-solid  border-2 border-black py-2'>
             <input type="text" placeholder='Search cocktail' className=' text-base border-none outline-none' value={searchbar}  onChange={searchbarHandler}/>
-            <button>
+           
             <IoSearch className=' text-xl' />
-            </button>
+            
           </div> 
-        ): 
-        (<></>) }
+        ) }
 
          
 

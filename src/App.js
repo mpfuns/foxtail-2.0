@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 function App() {
 
   const [searchbar, setSearchbar] = useState("")
+  const [lastPage, setLastPage] = useState("")
 /* state */
 
 /*  function  */
@@ -18,20 +19,15 @@ const {value} =event.target
 
 }
 
-useEffect(() => {
- 
-console.log(searchbar)
-console.log(searchbar)
-  
-}, [searchbar])
+
 
 
   return (   
 <Router>
   <Routes>
-    <Route path="/"  element={<Home  searchbar={searchbar} searchbarHandler={searchbarHandler} />}></Route>
-    <Route path="/search"  element={<Search searchbar={searchbar} searchbarHandler={searchbarHandler} />}></Route>
-    <Route path=":id"  element={<CocktailDetails />}></Route>
+    <Route path="/"  element={<Home  searchbar={searchbar} searchbarHandler={searchbarHandler} setLastPage={setLastPage} />}></Route>
+    <Route path="/search"  element={<Search searchbar={searchbar} searchbarHandler={searchbarHandler} setLastPage={setLastPage}  />}></Route>
+    <Route path=":id"  element={<CocktailDetails lastPage={lastPage} />}></Route>
   </Routes>
 </Router>
   );
