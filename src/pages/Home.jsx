@@ -7,6 +7,7 @@ import axios from 'axios';
 import  { useNavigate } from "react-router-dom"
 
 import foxtailData from '../assets/foxtailData';
+
 const Home = ({searchbar, searchbarHandler, setLastPage }) => {
 
   let navigate = useNavigate();
@@ -82,7 +83,7 @@ strAlcoholic} setLastPage={setLastPage} />)}
         <div className='flex flex-col items-center'>
         <h2 className='text-3xl text-center  font-bold mb-2 '>Cocktail Special</h2>
 
-        {fakeLoading? ( <CocktailSkeleton />) : (<CockktailThumbnails key={foxtailData[0].id} id={foxtailData[0].id} name={foxtailData[0].name} img={foxtailImg} status={foxtailData[0].status} setLastPage={ setLastPage} />)}
+        {fakeLoading? ( <CocktailSkeleton />) : (<CockktailThumbnails key={foxtailData[0].idDrink} id={foxtailData[0].idDrink} name={foxtailData[0].strDrink} img={foxtailImg} status={foxtailData[0].strAlcoholic} setLastPage={ setLastPage} />)}
        
         </div>
 
