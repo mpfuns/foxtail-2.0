@@ -7,6 +7,7 @@ const CockktailThumbnails = ({id, name, img, status, setLastPage}) => {
   let navigate = useNavigate()
 
   return (
+    /* animation  for hovor and  loading effect  */
     <div className='flex flex-col items-center cursor-pointer'onClick={ () => {  
       setLastPage(location.pathname)
       navigate(`/${id}`)}} >

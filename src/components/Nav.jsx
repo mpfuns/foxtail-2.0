@@ -23,6 +23,7 @@ let location = useLocation ();
           <img src={Logo} alt="" className="  object-contain w-[220px] h-auto z-10 "  />
           <div className='hidden md:block z-10 mr-10 '>
           <div className=' flex justify-between mb-10'>
+            {/*  animation for buttons */}
             <button className='text-2xl bg-white px-4 py-2 rounded-full drop-shadow-[0_14px_5px_rgba(0,0,0,0.75)] mx-2 ' onClick={() => navigate('/')} >Home</button>
             <button className='text-2xl bg-white px-4 py-2 rounded-full drop-shadow-[0_14px_5px_rgba(0,0,0,0.75)] mx-2 ' onClick={() => navigate('/search')}>Find Cocktail </button>
           </div>

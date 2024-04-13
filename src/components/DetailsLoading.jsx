@@ -3,6 +3,7 @@ import { FaMartiniGlassCitrus } from 'react-icons/fa6'
 
 const DetailsLoading = () => {
   return (
+    /*  animation of loading  with infinity loop */
     < div className='flex flex-col items-center '>
      <div className='flex justify-around items-center '>
         <div className='w-[300px] h-[294px] bg-gray-400 flex justify-center items-center mx-8'>

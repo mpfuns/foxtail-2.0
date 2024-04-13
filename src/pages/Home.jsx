@@ -51,7 +51,7 @@ const Home = ({searchbar, searchbarHandler, setLastPage }) => {
   return (
     <div className='mx-auto  w-full max-w-7xl'>
     <Nav />
-    {/* Hook */}
+    {/* Hook- need to  be resposives  */}
      <div className=' my-8 flex justify-around items-center'>
 
       <img src={foxBar} alt="" />
@@ -61,7 +61,7 @@ const Home = ({searchbar, searchbarHandler, setLastPage }) => {
          <br></br>
         <h1 className='text-4xl text-center  italic font-bold '>Craft Your Perfect Cocktail! </h1>
         <br></br>
-        {/* seach bar   */}
+        {/* seach bar-- animation for  button    */}
         <div className='flex items-center justify-center bg-white rounded-full px-2 border-solid  border-2 border-black py-4'>
             <input type="text" placeholder='Search cocktail' className=' text-3xl border-none outline-none'  value={searchbar} onChange={searchbarHandler} />
             <button onClick={ () => navigate("/search")}>

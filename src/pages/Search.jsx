@@ -17,7 +17,7 @@ async function fetchCocktails(){
       return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
     });
     
-  //console.log(sortDrinks.length %2)
+  
     setList(sortDrinks)
     
       setLoading(false)
@@ -56,6 +56,8 @@ async function fetchCocktails(){
 strAlcoholic} setLastPage={setLastPage} />))) 
 :(<NotFound />)}
 
+{/*  filter  set up */}
+{/*  back to  top */}
 </div>
 
 
