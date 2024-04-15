@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Nav, NotFound, EmptySearch, CocktailSkeleton, CockktailThumbnails } from '../components';
 import axios from 'axios';
 
-
+import  { useNavigate } from "react-router-dom"
 
 const Search = ({searchbar, searchbarHandler, setLastPage}) => {
 const [list, setList] = useState([]);
  const [loading, setLoading] = useState(); 
+ 
+let navigate = useNavigate();
+
   
 async function fetchCocktails(){
     setLoading(true)
@@ -28,6 +31,12 @@ async function fetchCocktails(){
     fetchCocktails();
     
   }, [searchbar])
+  /*  function  
+        filter 
+            all -- run  fecthCocktail 
+             non (Non alcoholic and Optional alcohol ) --  run do the  function 
+             alchol (Non alcoholic  and  Optional alcohol ) -- run do the  function 
+  */
   
 
 
@@ -48,6 +57,8 @@ async function fetchCocktails(){
 */}
    <div className={searchbar!== ""? " grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))]   gap-6 items-start justify-start my-8 mx-auto "  :"mt-8"}  >
   
+{/*  filter  set up options and  selection   */}
+
     {searchbar === ""? (<EmptySearch />) 
           : loading? 
           new  Array(12).fill(0).map((_, index) => (<CocktailSkeleton />)) : 
@@ -56,12 +67,15 @@ async function fetchCocktails(){
 strAlcoholic} setLastPage={setLastPage} />))) 
 :(<NotFound />)}
 
-{/*  filter  set up */}
-{/*  back to  top */}
+
+
+
 </div>
 
 
-
+<div className='flex justify-center my-8'>
+{searchbar && list.length >= 9 ?(<button  onClick={()=> window.scrollTo(0, 0)}> Back to top </button>) :("")}
+</div>
          
 
           
