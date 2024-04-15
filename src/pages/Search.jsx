@@ -5,13 +5,17 @@ import axios from 'axios';
 import  { useNavigate } from "react-router-dom"
 
 const Search = ({searchbar, searchbarHandler, setLastPage}) => {
-const [list, setList] = useState([]);
+const [currentList, setCurrentList] = useState([]);
+const [oldList, setOldList] = useState([]);
+const [filterMenu, setFilterMenu] = useState("DEFAULT")
  const [loading, setLoading] = useState(); 
  
 let navigate = useNavigate();
 
   
 async function fetchCocktails(){
+   
+  setFilterMenu("DEFAULT")
     setLoading(true)
     const {data} = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchbar}`);
      const  sortDrinks= data.drinks?.sort(function(a, b) {
@@ -21,24 +25,55 @@ async function fetchCocktails(){
     });
     
   
-    setList(sortDrinks)
+    setCurrentList(sortDrinks)
+    setOldList(sortDrinks)
     
       setLoading(false)
   
   }
 
   useEffect(() => {
+  
     fetchCocktails();
+   
     
   }, [searchbar])
   /*  function  
         filter 
-            all -- run  fecthCocktail 
+            all --  set  current to  old  
              non (Non alcoholic and Optional alcohol ) --  run do the  function 
-             alchol (Non alcoholic  and  Optional alcohol ) -- run do the  function 
+             alchol (alcoholic  and  Optional alcohol ) -- run do the  function 
   */
   
+ function  filterCocktail (filter){
+  console.log("here" )
+    if( filter === "DEFAULT"){
+      /* show all */
+      setLoading(true)
+      setFilterMenu("DEFAULT")
+         setCurrentList(oldList)
+         setLoading(false)
+    }
+    else if(filter === "NON_ALCOHOLIC"){
+      setLoading(true)
+       setFilterMenu("NON_ALCOHOLIC")
+      let non= oldList.filter((drink)=> drink.strAlcoholic !== "Alcoholic")
+      setCurrentList(non)
+      setLoading(false)
+      
+        
 
+    }
+    else if(filter === "ALCOHOLIC"){
+      setLoading(true)
+      setFilterMenu("ALCOHOLIC")
+      let alc =  oldList.filter((drink)=> drink.strAlcoholic !=="Non alcoholic")
+      setCurrentList(alc)
+      setLoading(false)
+    }
+
+
+ }
 
 
   return (
@@ -55,15 +90,30 @@ async function fetchCocktails(){
             if  data not found === not found page
 
 */}
+{/*  filter  set up options and  selection   */}
+
+{searchbar !== "" && (
+  <div className=' mt-4 flex justify-end items-center mr-6'>
+  <select id="filter"  value={filterMenu} onChange={(event)=> filterCocktail(event.target.value)} >
+        <option value="DEFAULT" >All</option>
+        <option value="NON_ALCOHOLIC">Non Alcoholic</option>
+        <option value="ALCOHOLIC">Alcoholic</option>
+    </select>
+</div>
+)}
+
+
    <div className={searchbar!== ""? " grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))]   gap-6 items-start justify-start my-8 mx-auto "  :"mt-8"}  >
   
-{/*  filter  set up options and  selection   */}
+
+
+
 
     {searchbar === ""? (<EmptySearch />) 
           : loading? 
           new  Array(12).fill(0).map((_, index) => (<CocktailSkeleton />)) : 
-    list? 
-      (list.map( drink => (<CockktailThumbnails key={drink.idDrink} id={drink.idDrink} name={drink.strDrink} img={drink.strDrinkThumb} status={drink.
+          currentList? 
+      (currentList.map( drink => (<CockktailThumbnails key={drink.idDrink} id={drink.idDrink} name={drink.strDrink} img={drink.strDrinkThumb} status={drink.
 strAlcoholic} setLastPage={setLastPage} />))) 
 :(<NotFound />)}
 
@@ -74,16 +124,8 @@ strAlcoholic} setLastPage={setLastPage} />)))
 
 
 <div className='flex justify-center my-8'>
-{searchbar && list.length >= 9 ?(<button  onClick={()=> window.scrollTo(0, 0)}> Back to top </button>) :("")}
+{searchbar && currentList?.length >= 9 ?(<button  onClick={()=> window.scrollTo(0, 0)}> Back to top </button>) :("")}
 </div>
-         
-
-          
-
-
-
-   
-
     </div>
   )
 }
