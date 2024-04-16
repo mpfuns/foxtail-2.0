@@ -5,8 +5,8 @@ const DetailsLoading = () => {
   return (
     /*  animation of loading  with infinity loop */
     < div className='flex flex-col items-center '>
-     <div className='flex justify-around items-center '>
-        <div className='w-[300px] h-[294px] bg-gray-400 flex justify-center items-center mx-8'>
+     <div className='flex justify-around items-center max-md:flex-col '>
+        <div className='w-[300px] h-[294px] bg-gray-400 flex justify-center items-center mx-8 mb-4'>
         <FaMartiniGlassCitrus  className='text-[200px]'/>
         </div>
         <div className='flex  flex-col items-center gap-10'>

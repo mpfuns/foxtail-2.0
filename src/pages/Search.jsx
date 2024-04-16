@@ -113,8 +113,8 @@ async function fetchCocktails(){
           : loading? 
           new  Array(12).fill(0).map((_, index) => (<CocktailSkeleton />)) : 
           currentList? 
-      (currentList.map( drink => (<CockktailThumbnails key={drink.idDrink} id={drink.idDrink} name={drink.strDrink} img={drink.strDrinkThumb} status={drink.
-strAlcoholic} setLastPage={setLastPage} />))) 
+      (currentList.map( (drink, index) => (<CockktailThumbnails key={drink.idDrink} id={drink.idDrink} name={drink.strDrink} img={drink.strDrinkThumb} status={drink.
+strAlcoholic} setLastPage={setLastPage}  index={index}/>))) 
 :(<NotFound />)}
 
 
