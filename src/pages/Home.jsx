@@ -86,8 +86,7 @@ strAlcoholic} setLastPage={setLastPage} index={1} />)}
         {fakeLoading? ( <CocktailSkeleton />) : (<CockktailThumbnails key={foxtailData[0].idDrink} id={foxtailData[0].idDrink} name={foxtailData[0].strDrink} img={foxtailImg} status={foxtailData[0].strAlcoholic} setLastPage={ setLastPage} index={2} />)}
        
         </div>
-
-
+       
       </div>
     </div>
   )

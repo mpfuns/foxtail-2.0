@@ -21,7 +21,6 @@ const CocktailDetails = ({lastPage}) => {
       } else{
         const {data} = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
 
-        console.log(data.drinks[0])
         setContent(data.drinks[0])
       }
 
@@ -43,7 +42,7 @@ useEffect(() => {
    
     <div className='mx-auto  w-full max-w-7xl'>
       <Nav/>
-      <button className='flex justify-between items-center text-white text-3xl bg-[#E48C4A] px-4 py-2 rounded-full border-solid  border-2 border-black mt-4' onClick={()=> navigate(lastPage)}> <IoArrowBack/> <h3>Back</h3></button>
+      <motion.button whileHover={{backgroundColor: "#C4996A", scale: 0.9}} whileTap={{scale:0.7}} className='flex justify-between items-center text-white text-3xl bg-[#E48C4A] px-4 py-2 rounded-full border-solid  border-2 border-black mt-4 ml-4' onClick={()=> navigate(lastPage)}> <IoArrowBack/> <h3>Back</h3></motion.button>
       <div className='mt-8 ' >
         {content? 
  
@@ -82,7 +81,7 @@ useEffect(() => {
                     </div>
                   </div>
                 
-                  <p className=' text-center text-2xl max-w-3xl mx-auto mb-8 max-sm:text-lg'>{content.strInstructions}</p>
+                  <p className=' text-center text-2xl max-w-3xl mx-auto mb-8 max-sm:text-lg max-sm:max-w-96'>{content.strInstructions}</p>
                 
 
                 </motion.div>
@@ -95,6 +94,7 @@ useEffect(() => {
  : ( <DetailsLoading />)}
 
       </div>
+
     </div>
   )
 }

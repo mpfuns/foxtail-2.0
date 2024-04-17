@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Nav, NotFound, EmptySearch, CocktailSkeleton, CockktailThumbnails } from '../components';
 import axios from 'axios';
+import { motion } from "framer-motion";
 
 import  { useNavigate } from "react-router-dom"
 
@@ -36,6 +37,7 @@ async function fetchCocktails(){
   
     fetchCocktails();
    
+   
     
   }, [searchbar])
   /*  function  
@@ -46,7 +48,7 @@ async function fetchCocktails(){
   */
   
  function  filterCocktail (filter){
-  console.log("here" )
+  
     if( filter === "DEFAULT"){
       /* show all */
       setLoading(true)
@@ -58,11 +60,10 @@ async function fetchCocktails(){
       setLoading(true)
        setFilterMenu("NON_ALCOHOLIC")
       let non= oldList.filter((drink)=> drink.strAlcoholic !== "Alcoholic")
-      setCurrentList(non)
-      setLoading(false)
-      
-        
 
+    
+        setCurrentList(non)
+        setLoading(false)
     }
     else if(filter === "ALCOHOLIC"){
       setLoading(true)
@@ -80,21 +81,11 @@ async function fetchCocktails(){
     <div className='mx-auto  w-full max-w-7xl'>
     <Nav searchbar={searchbar} searchbarHandler={searchbarHandler} />
 
-{/* If searchbar is  empty string === show something 
-    if  search  is have something in  string 
-        if loading 
-            show loading 
-
-        if not loading  show  results 
-            if data found  === show it 
-            if  data not found === not found page
-
-*/}
 {/*  filter  set up options and  selection   */}
 
 {searchbar !== "" && (
   <div className=' mt-4 flex justify-end items-center mr-6'>
-  <select id="filter"  value={filterMenu} onChange={(event)=> filterCocktail(event.target.value)} >
+  <select  className='text-xl'  value={filterMenu} onChange={(event)=> filterCocktail(event.target.value)} >
         <option value="DEFAULT" >All</option>
         <option value="NON_ALCOHOLIC">Non Alcoholic</option>
         <option value="ALCOHOLIC">Alcoholic</option>
@@ -106,13 +97,21 @@ async function fetchCocktails(){
    <div className={searchbar!== ""? " grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))]   gap-6 items-start justify-start my-8 mx-auto "  :"mt-8"}  >
   
 
+{/* If searchbar is  empty string === show something 
+    if  search  is have something in  string 
+        if loading 
+            show loading 
 
+        if not loading  show  results 
+            if data found  === show it 
+            if  data not found === not found page
 
+*/}
 
     {searchbar === ""? (<EmptySearch />) 
           : loading? 
           new  Array(12).fill(0).map((_, index) => (<CocktailSkeleton />)) : 
-          currentList? 
+          currentList?.length? 
       (currentList.map( (drink, index) => (<CockktailThumbnails key={drink.idDrink} id={drink.idDrink} name={drink.strDrink} img={drink.strDrinkThumb} status={drink.
 strAlcoholic} setLastPage={setLastPage}  index={index}/>))) 
 :(<NotFound />)}
@@ -124,7 +123,7 @@ strAlcoholic} setLastPage={setLastPage}  index={index}/>)))
 
 
 <div className='flex justify-center my-8'>
-{searchbar && currentList?.length >= 9 ?(<button  onClick={()=> window.scrollTo(0, 0)}> Back to top </button>) :("")}
+{searchbar && currentList?.length >= 9 ?(<motion.button className='text-xl'  whileHover={{fontWeight: "bold", scale:1.1}} whileTap={{scale:0.9}} onClick={()=> window.scrollTo(0, 0)}> Back to top </motion.button>) :("")}
 </div>
     </div>
   )
